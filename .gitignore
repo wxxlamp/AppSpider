@@ -2,3 +2,4 @@
 *.iml
 logs
 target
+src/main/resources/mybatis-config.xml
