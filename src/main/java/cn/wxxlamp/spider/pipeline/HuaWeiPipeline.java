@@ -1,5 +1,7 @@
 package cn.wxxlamp.spider.pipeline;
 
+import cn.wxxlamp.spider.config.MybatisConfiguration;
+import cn.wxxlamp.spider.dao.AppDescDao;
 import cn.wxxlamp.spider.model.AppDesc;
 import cn.wxxlamp.spider.model.bean.HuaWeiApp;
 import cn.wxxlamp.spider.util.UrlUtils;
@@ -27,9 +29,14 @@ public class HuaWeiPipeline implements Pipeline<HuaWeiApp> {
         // 默认bean属性的几个list#size全都一样
         for (int i = 0; i < bean.getName().size(); i++) {
             AppDesc appDesc = getAppDesc(bean, i);
-            System.out.println(appDesc);
+            // Mybatis持久化
+            AppDescDao appDescDao = MybatisConfiguration.getDao(AppDescDao.class);
+            if (appDescDao.selectAppDescByAppIdAndAppStore(appDesc.getAppId(), appDesc.getAppStore()) != null) {
+                appDescDao.updateAppDescById(appDesc);
+            } else {
+                appDescDao.insertAppDesc(appDesc);
+            }
         }
-        // TODO 持久化appDescList
     }
 
    private AppDesc getAppDesc(HuaWeiApp bean, int i) {
