@@ -26,6 +26,7 @@ public class AppDesc {
 
     /**
      * 大分类
+     * 如果没有，则和小分类相同
      */
     private String kindName;
 

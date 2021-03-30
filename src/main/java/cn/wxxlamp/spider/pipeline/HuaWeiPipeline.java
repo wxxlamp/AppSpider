@@ -2,6 +2,7 @@ package cn.wxxlamp.spider.pipeline;
 
 import cn.wxxlamp.spider.config.MybatisConfiguration;
 import cn.wxxlamp.spider.dao.AppDescDao;
+import cn.wxxlamp.spider.dao.AppDescMapper;
 import cn.wxxlamp.spider.model.AppDesc;
 import cn.wxxlamp.spider.model.bean.HuaWeiApp;
 import cn.wxxlamp.spider.util.UrlUtils;
@@ -9,6 +10,7 @@ import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.scheduler.DeriveSchedulerContext;
+import org.apache.commons.codec.digest.Md5Crypt;
 
 /**
  * @author wxxlamp
@@ -23,27 +25,21 @@ public class HuaWeiPipeline implements Pipeline<HuaWeiApp> {
     public void process(HuaWeiApp bean) {
         if (bean.getHasNextPage() == 1) {
             HttpRequest request = bean.getRequest();
-            String nextUrl = UrlUtils.getNextUrl(request.getUrl());
+            String nextUrl = UrlUtils.getHuaWeiNextUrl(request.getUrl());
             DeriveSchedulerContext.into(request.subRequest(nextUrl));
         }
         // 默认bean属性的几个list#size全都一样
         for (int i = 0; i < bean.getName().size(); i++) {
             AppDesc appDesc = getAppDesc(bean, i);
             // Mybatis持久化
-            AppDescDao appDescDao = MybatisConfiguration.getDao(AppDescDao.class);
-            AppDesc rawAppDesc = appDescDao.selectAppDescByAppIdAndAppStore(appDesc.getAppId(), appDesc.getAppStore());
-            if (rawAppDesc == null) {
-                appDescDao.insertAppDesc(appDesc);
-            } else if (!rawAppDesc.equals(appDesc)) {
-                appDescDao.updateAppDescById(appDesc);
-            }
+            AppDescMapper.mapper(appDesc);
         }
     }
 
    private AppDesc getAppDesc(HuaWeiApp bean, int i) {
         AppDesc appDesc = new AppDesc();
         appDesc.setName(bean.getName().get(i));
-        appDesc.setAppId(bean.getId().get(i));
+        appDesc.setAppId(Md5Crypt.apr1Crypt(bean.getName().get(i) + bean.getPackageName().get(i) + APP_STORE));
         appDesc.setAppStore(APP_STORE);
         appDesc.setKindName(bean.getKindName().get(i));
         appDesc.setPackageName(bean.getPackageName().get(i));

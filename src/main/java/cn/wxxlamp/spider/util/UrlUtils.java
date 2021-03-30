@@ -6,11 +6,19 @@ package cn.wxxlamp.spider.util;
  */
 public class UrlUtils {
 
+    public static final String HUAWEI_KEY = "reqPageNum=";
+
+    public static final String MY_APP_KIND = "orgame=";
+
+    public static final String MY_APP_CATEGORY = "categoryId=";
+
+    public static final String MY_APP_CONTEXT = "pageContext=";
+
     private static final Integer ZERO = 48;
 
-    private static final String REQ_PAGE_NUM = "reqPageNum=";
-
     private static final char AND = '&';
+
+    private static final char MINUS = '-';
 
     /**
      * 获得下一页的url
@@ -18,13 +26,31 @@ public class UrlUtils {
      * @param origin 原始url
      * @return 下一页的url
      */
-    public static String getNextUrl(String origin) {
-        int index = origin.indexOf(REQ_PAGE_NUM) + REQ_PAGE_NUM.length();
-        int currPage = 0;
-        while (origin.charAt(index) != AND) {
-            currPage *= 10;
-            currPage += origin.charAt(index ++) - ZERO;
+    public static String getHuaWeiNextUrl(String origin) {
+        return getNextUrl(origin, HUAWEI_KEY, 1);
+    }
+
+    public static String getMyAppNextUrl(String origin) {
+        return getNextUrl(origin, MY_APP_CONTEXT, 20);
+    }
+
+    private static String getNextUrl(String url, String key, int step) {
+        int currPage = getUrlValue(url, key);
+        return url.replace(key + currPage, key + (currPage + step));
+    }
+
+    public static Integer getUrlValue(String url, String key) {
+        int index = url.indexOf(key) + key.length();
+        int value = 0;
+        boolean minus = false;
+        if (url.charAt(index) == MINUS) {
+            index ++;
+            minus = true;
         }
-        return origin.replace(REQ_PAGE_NUM + currPage, REQ_PAGE_NUM + (currPage + 1));
+        while (index < url.length() && url.charAt(index) != AND) {
+            value *= 10;
+            value += url.charAt(index ++) - ZERO;
+        }
+        return minus ? -value : value;
     }
 }
