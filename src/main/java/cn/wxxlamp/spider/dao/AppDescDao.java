@@ -15,7 +15,7 @@ public interface AppDescDao {
      * @param appStore appStore
      * @return {@link cn.wxxlamp.spider.model.AppDesc}
      */
-    String selectAppDescByAppIdAndAppStore(@Param("appId") String appId, @Param("appStore") String appStore);
+    AppDesc selectAppDescByAppIdAndAppStore(@Param("appId") String appId, @Param("appStore") String appStore);
 
     /**
      * 通过id更新

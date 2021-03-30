@@ -31,10 +31,11 @@ public class HuaWeiPipeline implements Pipeline<HuaWeiApp> {
             AppDesc appDesc = getAppDesc(bean, i);
             // Mybatis持久化
             AppDescDao appDescDao = MybatisConfiguration.getDao(AppDescDao.class);
-            if (appDescDao.selectAppDescByAppIdAndAppStore(appDesc.getAppId(), appDesc.getAppStore()) != null) {
-                appDescDao.updateAppDescById(appDesc);
-            } else {
+            AppDesc rawAppDesc = appDescDao.selectAppDescByAppIdAndAppStore(appDesc.getAppId(), appDesc.getAppStore());
+            if (rawAppDesc == null) {
                 appDescDao.insertAppDesc(appDesc);
+            } else if (!rawAppDesc.equals(appDesc)) {
+                appDescDao.updateAppDescById(appDesc);
             }
         }
     }

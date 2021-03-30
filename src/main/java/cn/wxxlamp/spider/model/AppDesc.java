@@ -157,4 +157,21 @@ public class AppDesc {
                 ", appStore='" + appStore + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof AppDesc) {
+            AppDesc another = (AppDesc) obj;
+            return another.getVersion().equals(this.getVersion())
+                    && another.getPackageName().equals(this.getPackageName())
+                    && another.getSize().equals(this.getSize())
+                    && another.getTagName().equals(this.getTagName())
+                    && another.getUrl().equals(this.getUrl())
+                    && another.getKindName().equals(this.getKindName())
+                    && another.getAppId().equals(this.getAppId())
+                    && another.getName().equals(this.getName())
+                    && another.getAppStore().equals(this.getAppStore());
+        }
+        return false;
+    }
 }

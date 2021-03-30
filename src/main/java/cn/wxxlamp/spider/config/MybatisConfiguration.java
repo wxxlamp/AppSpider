@@ -34,7 +34,7 @@ public class MybatisConfiguration <T> {
 
     public static <T> T getDao(Class<T> type) {
         if (sqlSession == null) {
-            sqlSession = getSessionFactory().openSession();
+            sqlSession = getSessionFactory().openSession(true);
         }
         return sqlSession.getMapper(type);
     }
