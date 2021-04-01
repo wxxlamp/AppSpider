@@ -12,7 +12,7 @@ import java.io.InputStream;
  * @author wxxlamp
  * @date 2021/03/29~15:56
  */
-public class MybatisConfiguration <T> {
+public class MybatisConfiguration {
 
     private static SqlSession sqlSession;
 

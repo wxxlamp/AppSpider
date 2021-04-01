@@ -159,6 +159,11 @@ public class AppDesc {
                 '}';
     }
 
+    /**
+     * appId和appStore一定相同，所以不用equals
+     * @param obj 被比较对象，一定是AppDesc
+     * @return true/false
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof AppDesc) {
@@ -169,9 +174,7 @@ public class AppDesc {
                     && another.getTagName().equals(this.getTagName())
                     && another.getUrl().equals(this.getUrl())
                     && another.getKindName().equals(this.getKindName())
-                    && another.getAppId().equals(this.getAppId())
-                    && another.getName().equals(this.getName())
-                    && another.getAppStore().equals(this.getAppStore());
+                    && another.getName().equals(this.getName());
         }
         return false;
     }

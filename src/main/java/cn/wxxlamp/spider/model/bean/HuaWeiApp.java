@@ -12,7 +12,7 @@ import java.util.List;
  * @author wxxlamp
  * @date 2021/03/29~11:07
  */
-@Gecco(matchUrl = "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum={page}&uri={kindUrl}&maxResults=25&zone=&locale=zh", pipelines = {"consolePipeline", "huaWeiPipeline"})
+@Gecco(matchUrl = "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum={page}&uri={kindUrl}&maxResults=25&zone=CN&locale=zh", pipelines = {"huaWeiPipeline"})
 public class HuaWeiApp implements JsonBean {
 
     public static final long serialVersionUID = 28393020212827837L;

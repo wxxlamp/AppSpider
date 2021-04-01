@@ -13,7 +13,12 @@ public class AppDescMapper {
 
     private static AppDescDao appDescDao;
 
+    /**
+     * 防止mybatis的insert数据一直在缓存中
+     */
     private static final AtomicInteger COUNT = new AtomicInteger(0);
+
+    private static final int THRESHOLD = 500;
 
     public static void mapper(AppDesc appDesc) {
         if (appDescDao == null) {
@@ -25,7 +30,7 @@ public class AppDescMapper {
         } else if (!rawAppDesc.equals(appDesc)) {
             appDescDao.updateAppDescById(appDesc);
         }
-        if (COUNT.incrementAndGet() == 500) {
+        if (COUNT.incrementAndGet() == THRESHOLD) {
             appDescDao = null;
             COUNT.set(0);
         }

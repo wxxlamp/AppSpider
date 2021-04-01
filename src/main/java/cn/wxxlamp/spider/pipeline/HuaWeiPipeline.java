@@ -1,16 +1,14 @@
 package cn.wxxlamp.spider.pipeline;
 
-import cn.wxxlamp.spider.config.MybatisConfiguration;
-import cn.wxxlamp.spider.dao.AppDescDao;
 import cn.wxxlamp.spider.dao.AppDescMapper;
 import cn.wxxlamp.spider.model.AppDesc;
 import cn.wxxlamp.spider.model.bean.HuaWeiApp;
+import cn.wxxlamp.spider.util.Md5Utils;
 import cn.wxxlamp.spider.util.UrlUtils;
 import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.scheduler.DeriveSchedulerContext;
-import org.apache.commons.codec.digest.Md5Crypt;
 
 /**
  * @author wxxlamp
@@ -39,7 +37,7 @@ public class HuaWeiPipeline implements Pipeline<HuaWeiApp> {
    private AppDesc getAppDesc(HuaWeiApp bean, int i) {
         AppDesc appDesc = new AppDesc();
         appDesc.setName(bean.getName().get(i));
-        appDesc.setAppId(Md5Crypt.apr1Crypt(bean.getName().get(i) + bean.getPackageName().get(i) + APP_STORE));
+        appDesc.setAppId(Md5Utils.getMd5(bean.getName().get(i) + bean.getPackageName().get(i)));
         appDesc.setAppStore(APP_STORE);
         appDesc.setKindName(bean.getKindName().get(i));
         appDesc.setPackageName(bean.getPackageName().get(i));

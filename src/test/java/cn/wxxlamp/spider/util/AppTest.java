@@ -1,4 +1,4 @@
-package cn.wxxlamp;
+package cn.wxxlamp.spider.util;
 
 import static org.junit.Assert.assertTrue;
 
@@ -9,12 +9,8 @@ import org.junit.Test;
  */
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void md5Test() {
+        System.out.println(Md5Utils.getMd5("快手com.api.ui"));
     }
 }
