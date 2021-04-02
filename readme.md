@@ -21,11 +21,11 @@ ac6829897ec3484a8f0efb881420d361
   },
   {
     "//": "华为影音娱乐",
-    "url": "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum=1&uri=33ef450cbac34770a477cfa78db4cf8c&maxResults=25&zone=&locale=zh"
+    "url": "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum=1&uri=33ef450cbac34770a477cfa78db4cf8c&maxResults=25&zone=CN&locale=zh"
   },
   {
     "//": "华为实用工具",
-    "url": "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum=1&uri=8e62cf6d238c4abdb892b400ff072f43&maxResults=25&zone=&locale=zh"
+    "url": "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum=1&uri=8e62cf6d238c4abdb892b400ff072f43&maxResults=25&zone=CN&locale=zh"
   },
   {
     "//": "华为社交通讯",
@@ -106,6 +106,10 @@ ac6829897ec3484a8f0efb881420d361
   {
     "//": "华为棋牌桌游",
     "url": "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum=1&uri=43285bc8c9344cd2b973165ef8fc9aee&maxResults=25&zone=CN&locale=zh"
+  },
+  {
+    "//": "小米",
+    "url": "https://app.mi.com/"
   }
 ]
 ```

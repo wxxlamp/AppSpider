@@ -14,6 +14,8 @@ public class UrlUtils {
 
     public static final String MY_APP_CONTEXT = "pageContext=";
 
+    public static final String MI_APP_PAGE = "page=";
+
     private static final Integer ZERO = 48;
 
     private static final char AND = '&';
@@ -32,6 +34,10 @@ public class UrlUtils {
 
     public static String getMyAppNextUrl(String origin) {
         return getNextUrl(origin, MY_APP_CONTEXT, 20);
+    }
+
+    public static String getMiAppNextUrl(String origin) {
+        return getNextUrl(origin, MI_APP_PAGE, 1);
     }
 
     private static String getNextUrl(String url, String key, int step) {
