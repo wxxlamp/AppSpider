@@ -20,7 +20,7 @@ public class HuaWeiApp implements JsonBean {
     @Request
     private HttpRequest request;
 
-    @JSONPath("$layoutData[0].dataList.ID")
+    @JSONPath("$.layoutData[0].dataList.ID")
     private List<String> id;
 
     @JSONPath("$.layoutData[0].dataList.name")

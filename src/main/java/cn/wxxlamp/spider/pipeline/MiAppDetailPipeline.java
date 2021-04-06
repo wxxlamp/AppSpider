@@ -3,8 +3,10 @@ package cn.wxxlamp.spider.pipeline;
 import cn.wxxlamp.spider.dao.AppDescMapper;
 import cn.wxxlamp.spider.model.AppDesc;
 import cn.wxxlamp.spider.model.bean.MiAppDetail;
+import cn.wxxlamp.spider.util.TagSearchUtils;
 import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
+import com.geccocrawler.gecco.scheduler.DeriveSchedulerContext;
 
 /**
  * @author wxxlamp
@@ -19,6 +21,10 @@ public class MiAppDetailPipeline implements Pipeline<MiAppDetail> {
     public void process(MiAppDetail bean) {
         AppDesc appDesc = getAppDesc(bean);
         AppDescMapper.mapper(appDesc);
+        // 搜索华为
+        if (!TagSearchUtils.checkTag(appDesc.getTagName())) {
+            DeriveSchedulerContext.into(bean.getRequest().subRequest(TagSearchUtils.getUrl(appDesc.getTagName())));
+        }
     }
 
     private AppDesc getAppDesc(MiAppDetail bean) {

@@ -3,6 +3,7 @@ package cn.wxxlamp.spider.pipeline;
 import cn.wxxlamp.spider.dao.AppDescMapper;
 import cn.wxxlamp.spider.model.AppDesc;
 import cn.wxxlamp.spider.model.bean.MyAppJson;
+import cn.wxxlamp.spider.util.TagSearchUtils;
 import cn.wxxlamp.spider.util.UrlUtils;
 import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
@@ -29,6 +30,10 @@ public class MyAppJsonPipeline implements Pipeline<MyAppJson> {
         for (int i = 0; i < bean.getSize().size(); i++) {
             AppDesc appDesc = getAppDesc(bean, i);
             AppDescMapper.mapper(appDesc);
+            // 搜索华为
+            if (!TagSearchUtils.checkTag(appDesc.getTagName())) {
+                DeriveSchedulerContext.into(bean.getRequest().subRequest(TagSearchUtils.getUrl(appDesc.getTagName())));
+            }
         }
     }
 

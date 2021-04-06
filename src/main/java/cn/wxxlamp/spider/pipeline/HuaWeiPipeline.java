@@ -4,11 +4,13 @@ import cn.wxxlamp.spider.dao.AppDescMapper;
 import cn.wxxlamp.spider.model.AppDesc;
 import cn.wxxlamp.spider.model.bean.HuaWeiApp;
 import cn.wxxlamp.spider.util.Md5Utils;
+import cn.wxxlamp.spider.util.TagSearchUtils;
 import cn.wxxlamp.spider.util.UrlUtils;
 import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.scheduler.DeriveSchedulerContext;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author wxxlamp
@@ -30,7 +32,11 @@ public class HuaWeiPipeline implements Pipeline<HuaWeiApp> {
         for (int i = 0; i < bean.getName().size(); i++) {
             AppDesc appDesc = getAppDesc(bean, i);
             // Mybatis持久化
-            AppDescMapper.mapper(appDesc);
+//            AppDescMapper.mapper(appDesc);
+            // 搜索华为
+            if (!TagSearchUtils.checkTag(appDesc.getTagName())) {
+                DeriveSchedulerContext.into(bean.getRequest().subRequest(TagSearchUtils.getUrl(appDesc.getTagName())));
+            }
         }
     }
 
@@ -43,7 +49,9 @@ public class HuaWeiPipeline implements Pipeline<HuaWeiApp> {
         appDesc.setPackageName(bean.getPackageName().get(i));
         appDesc.setSize(bean.getSize().get(i));
         appDesc.setTagName(bean.getTagName().get(i));
-        appDesc.setUrl(bean.getDownloadUrl().get(i));
+        if (bean.getDownloadUrl() != null && bean.getDownloadUrl().size() > i) {
+            appDesc.setUrl(bean.getDownloadUrl().get(i));
+        }
         appDesc.setVersion(bean.getVersion().get(i));
         return appDesc;
    }

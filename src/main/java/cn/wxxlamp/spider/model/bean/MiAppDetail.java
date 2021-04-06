@@ -3,6 +3,8 @@ package cn.wxxlamp.spider.model.bean;
 import com.geccocrawler.gecco.annotation.Gecco;
 import com.geccocrawler.gecco.annotation.Href;
 import com.geccocrawler.gecco.annotation.HtmlField;
+import com.geccocrawler.gecco.annotation.Request;
+import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.spider.HtmlBean;
 
 /**
@@ -13,6 +15,9 @@ import com.geccocrawler.gecco.spider.HtmlBean;
 public class MiAppDetail implements HtmlBean {
 
     private static final long serialVersionUID = 675462335438691818L;
+
+    @Request
+    private HttpRequest request;
 
     @HtmlField(cssPath = "body > div.main > div.container.cf > div.app-intro.cf > div > div > h3")
     private String appName;
@@ -35,6 +40,14 @@ public class MiAppDetail implements HtmlBean {
 
     @HtmlField(cssPath = "body > div.main > div.container.cf > div:nth-child(4) > div.float-right > div:nth-child(2)")
     private String appId;
+
+    public HttpRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(HttpRequest request) {
+        this.request = request;
+    }
 
     public String getAppName() {
         return appName;
@@ -95,6 +108,7 @@ public class MiAppDetail implements HtmlBean {
     @Override
     public String toString() {
         return "MiAppDetail{" +
+                "request='" + request.getUrl() + '\'' +
                 "appName='" + appName + '\'' +
                 ", apkName='" + apkName + '\'' +
                 ", size='" + size + '\'' +

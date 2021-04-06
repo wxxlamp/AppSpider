@@ -172,8 +172,8 @@ public class AppDesc {
                     && another.getPackageName().equals(this.getPackageName())
                     && another.getSize().equals(this.getSize())
                     && another.getTagName().equals(this.getTagName())
-                    && another.getUrl().equals(this.getUrl())
-                    && another.getKindName().equals(this.getKindName())
+                    && (another.getUrl() == null || another.getUrl().equals(this.getUrl()))
+                    && (another.getKindName() == null || another.getKindName().equals(this.getKindName()))
                     && another.getName().equals(this.getName());
         }
         return false;
