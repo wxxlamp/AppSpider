@@ -20,15 +20,13 @@ public interface AppDescDao {
     /**
      * 通过id更新
      * @param appDesc appDesc
-     * @return 是否成功
      */
-    int updateAppDescById(AppDesc appDesc);
+    void updateAppDescById(AppDesc appDesc);
 
     /**
      * 自增
      * 插入AppDescription
      * @param appDesc appDesc
-     * @return 是否成功
      */
-    int insertAppDesc(AppDesc appDesc);
+    void insertAppDesc(AppDesc appDesc);
 }

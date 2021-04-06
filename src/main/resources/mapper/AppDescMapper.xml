@@ -11,7 +11,7 @@
         <result column="app_store" property="appStore"/>
     </resultMap>
     <select id="selectAppDescByAppIdAndAppStore" resultType="cn.wxxlamp.spider.model.AppDesc" resultMap="appDesc">
-        select * from app_desc where app_id = #{appId} and app_store = #{appStore}
+        select id, app_id, name, kind_name, tag_name, size, package_name, version, url, app_store from app_desc where app_store = #{appStore} and app_id = #{appId}
     </select>
     <update id="updateAppDescById" parameterType="cn.wxxlamp.spider.model.AppDesc">
         update app_desc set name = #{name}, kind_name = #{kindName}, tag_name = #{tagName}, size = #{size}, package_name = #{packageName}, version = #{version}, url = #{url} where id = #{id}

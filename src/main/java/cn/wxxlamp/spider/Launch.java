@@ -10,8 +10,8 @@ public class Launch {
     public static void main(String[] args) {
         GeccoEngine.create()
                 .classpath("cn.wxxlamp.spider")
-                .interval(2000)
+                .interval(1500)
+                .thread(1)
                 .start();
-
     }
 }
