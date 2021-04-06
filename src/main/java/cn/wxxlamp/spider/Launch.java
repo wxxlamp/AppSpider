@@ -11,7 +11,7 @@ public class Launch {
         GeccoEngine.create()
                 .classpath("cn.wxxlamp.spider")
                 .interval(1500)
-                .thread(1)
+                .thread(8)
                 .start();
     }
 }

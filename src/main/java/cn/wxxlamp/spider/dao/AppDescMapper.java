@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class AppDescMapper {
 
-    private static AppDescDao appDescDao;
+    private static final ThreadLocal<AppDescDao> APP_DESC_DAO = new ThreadLocal<>();
 
     private static final AtomicInteger COUNT = new AtomicInteger(0);
 
@@ -21,9 +21,10 @@ public class AppDescMapper {
     private static final int THRESHOLD = 500;
 
     public static void mapper(AppDesc appDesc) {
-        if (appDescDao == null) {
-            appDescDao = MybatisConfiguration.getDao(AppDescDao.class);
+        if (APP_DESC_DAO.get() == null) {
+            APP_DESC_DAO.set(MybatisConfiguration.getDao(AppDescDao.class));
         }
+        AppDescDao appDescDao = APP_DESC_DAO.get();
         AppDesc rawAppDesc = appDescDao.selectAppDescByAppIdAndAppStore(appDesc.getAppId(), appDesc.getAppStore());
         if (rawAppDesc == null) {
             appDescDao.insertAppDesc(appDesc);
@@ -32,7 +33,7 @@ public class AppDescMapper {
             appDescDao.updateAppDescById(appDesc);
         }
         if (COUNT.incrementAndGet() == THRESHOLD) {
-            appDescDao = null;
+            APP_DESC_DAO.remove();
             COUNT.set(0);
         }
     }

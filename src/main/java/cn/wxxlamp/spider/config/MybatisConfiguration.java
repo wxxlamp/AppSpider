@@ -14,8 +14,6 @@ import java.io.InputStream;
  */
 public class MybatisConfiguration {
 
-    private static SqlSession sqlSession;
-
     private static SqlSessionFactory sqlSessionFactory;
 
     private static final String RESOURCE = "mybatis-config.xml";
@@ -33,10 +31,7 @@ public class MybatisConfiguration {
     }
 
     public static <T> T getDao(Class<T> type) {
-        if (sqlSession == null) {
-            sqlSession = getSessionFactory().openSession(true);
-        }
-        return sqlSession.getMapper(type);
+        return getSessionFactory().openSession(true).getMapper(type);
     }
 
 }
