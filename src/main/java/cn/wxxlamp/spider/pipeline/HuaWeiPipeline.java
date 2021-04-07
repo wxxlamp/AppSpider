@@ -12,6 +12,8 @@ import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.scheduler.DeriveSchedulerContext;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Objects;
+
 /**
  * @author wxxlamp
  * @date 2021/03/29~11:30
@@ -32,10 +34,12 @@ public class HuaWeiPipeline implements Pipeline<HuaWeiApp> {
         for (int i = 0; i < bean.getName().size(); i++) {
             AppDesc appDesc = getAppDesc(bean, i);
             // Mybatis持久化
-//            AppDescMapper.mapper(appDesc);
-            // 搜索华为
+            AppDescMapper.mapper(appDesc);
+            // 搜索华为和应用宝
             if (!TagSearchUtils.checkTag(appDesc.getTagName())) {
-                DeriveSchedulerContext.into(bean.getRequest().subRequest(TagSearchUtils.getUrl(appDesc.getTagName())));
+                for (String s : Objects.requireNonNull(TagSearchUtils.getUrl(appDesc.getTagName()))) {
+                    DeriveSchedulerContext.into(bean.getRequest().subRequest(s));
+                }
             }
         }
     }

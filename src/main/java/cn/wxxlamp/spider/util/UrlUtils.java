@@ -59,4 +59,13 @@ public class UrlUtils {
         }
         return minus ? -value : value;
     }
+
+    public static String getUrlStrValue(String url, String key) {
+        int index = url.indexOf(key) + key.length();
+        StringBuilder sb = new StringBuilder();
+        while (index < url.length() && url.charAt(index) != AND) {
+            sb.append(url.charAt(index ++));
+        }
+        return sb.toString();
+    }
 }

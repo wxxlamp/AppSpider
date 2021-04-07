@@ -17,18 +17,22 @@ public class TagSearchUtils {
         return SET.contains(tag);
     }
 
-    public static String getUrl(String tag) {
+    public static String[] getUrl(String tag) {
         if (checkTag(tag)) {
             return null;
         }
         SET.add(tag);
-        String codeTag = "|" + tag;
+        String codeTagHuaWei = "|" + tag;
+        String codeTagMyApp = tag;
         try {
-            codeTag = URLEncoder.encode(codeTag, "UTF-8");
+            codeTagHuaWei = URLEncoder.encode(codeTagHuaWei, "UTF-8");
+            codeTagMyApp = URLEncoder.encode(codeTagMyApp, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum=1&uri=searchApp"
-                + codeTag + "&maxResults=25&zone=CN&locale=zh";
+        String urlHuaWei = "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum=1&uri=searchApp"
+                + codeTagHuaWei + "&maxResults=25&zone=CN&locale=zh";
+        String urlMyApp = "https://android.myapp.com/myapp/searchAjax.htm?kw=" + codeTagMyApp + "&pns=MA==&sid=0";
+        return new String[]{urlHuaWei, urlMyApp};
     }
 }

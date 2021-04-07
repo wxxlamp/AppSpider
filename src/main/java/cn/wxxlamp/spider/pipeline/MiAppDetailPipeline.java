@@ -8,6 +8,8 @@ import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
 import com.geccocrawler.gecco.scheduler.DeriveSchedulerContext;
 
+import java.util.Objects;
+
 /**
  * @author wxxlamp
  * @date 2021/04/02~10:44
@@ -21,9 +23,11 @@ public class MiAppDetailPipeline implements Pipeline<MiAppDetail> {
     public void process(MiAppDetail bean) {
         AppDesc appDesc = getAppDesc(bean);
         AppDescMapper.mapper(appDesc);
-        // 搜索华为
+        // 搜索华为和应用宝
         if (!TagSearchUtils.checkTag(appDesc.getTagName())) {
-            DeriveSchedulerContext.into(bean.getRequest().subRequest(TagSearchUtils.getUrl(appDesc.getTagName())));
+            for (String s : Objects.requireNonNull(TagSearchUtils.getUrl(appDesc.getTagName()))) {
+                DeriveSchedulerContext.into(bean.getRequest().subRequest(s));
+            }
         }
     }
 

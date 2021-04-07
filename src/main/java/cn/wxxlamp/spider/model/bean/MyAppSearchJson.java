@@ -10,40 +10,43 @@ import java.util.List;
 
 /**
  * @author wxxlamp
- * @date 2021/03/30~16:56
+ * @date 2021/04/07~09:38
  */
-@Gecco(matchUrl = "https://android.myapp.com/cate/appList.htm?orgame={game}&categoryId={id}&pageSize=20&pageContext={page}",
-        pipelines = {"myAppJsonPipeline"})
-public class MyAppJson implements JsonBean {
+@Gecco(matchUrl = "https://android.myapp.com/myapp/searchAjax.htm?kw={kw}&pns={pns}&sid=0",
+        pipelines = {"myAppSearchJsonPipeline"})
+public class MyAppSearchJson implements JsonBean {
 
     private static final long serialVersionUID = -5696033709028657709L;
 
     @Request
     private HttpRequest request;
 
-    @JSONPath("$.obj.appId")
+    @JSONPath("$.obj.appDetails.appId")
     private List<Integer> appId;
 
-    @JSONPath("$.obj.appName")
+    @JSONPath("$.obj.appDetails.appName")
     private List<String> name;
 
-    @JSONPath("$.obj.pkgName")
+    @JSONPath("$.obj.appDetails.pkgName")
     private List<String> packageName;
 
-    @JSONPath("$.obj.fileSize")
+    @JSONPath("$.obj.appDetails.fileSize")
     private List<Integer> size;
 
-    @JSONPath("$.obj.versionName")
+    @JSONPath("$.obj.appDetails.versionName")
     private List<String> version;
 
-    @JSONPath("$.obj.categoryName")
+    @JSONPath("$.obj.appDetails.categoryName")
     private List<String> tagName;
 
-    @JSONPath("$.obj.apkUrl")
+    @JSONPath("$.obj.appDetails.apkUrl")
     private List<String> url;
 
-    @JSONPath("$.count")
-    private Integer count;
+    @JSONPath("$.obj.hasNext")
+    private Integer hasNext;
+
+    @JSONPath("$.success")
+    private Boolean success;
 
     public List<Integer> getAppId() {
         return appId;
@@ -101,13 +104,6 @@ public class MyAppJson implements JsonBean {
         this.url = url;
     }
 
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
 
     public HttpRequest getRequest() {
         return request;
@@ -117,17 +113,35 @@ public class MyAppJson implements JsonBean {
         this.request = request;
     }
 
+    public Integer getHasNext() {
+        return hasNext;
+    }
+
+    public void setHasNext(Integer hasNext) {
+        this.hasNext = hasNext;
+    }
+
+    public Boolean getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
+
     @Override
     public String toString() {
-        return "MyAppJson{" +
-                "appId=" + appId +
+        return "MyAppSearchJson{" +
+                "request=" + request.getUrl() +
+                ", appId=" + appId +
                 ", name=" + name +
                 ", packageName=" + packageName +
                 ", size=" + size +
                 ", version=" + version +
                 ", tagName=" + tagName +
                 ", url=" + url +
-                ", count=" + count +
+                ", hasNext=" + hasNext +
+                ", success=" + success +
                 '}';
     }
 }

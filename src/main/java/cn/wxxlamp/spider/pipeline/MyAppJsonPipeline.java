@@ -10,6 +10,8 @@ import com.geccocrawler.gecco.pipeline.Pipeline;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.scheduler.DeriveSchedulerContext;
 
+import java.util.Objects;
+
 /**
  * @author wxxlamp
  * @date 2021/03/30~17:09
@@ -30,9 +32,11 @@ public class MyAppJsonPipeline implements Pipeline<MyAppJson> {
         for (int i = 0; i < bean.getSize().size(); i++) {
             AppDesc appDesc = getAppDesc(bean, i);
             AppDescMapper.mapper(appDesc);
-            // 搜索华为
+            // 搜索
             if (!TagSearchUtils.checkTag(appDesc.getTagName())) {
-                DeriveSchedulerContext.into(bean.getRequest().subRequest(TagSearchUtils.getUrl(appDesc.getTagName())));
+                for (String s : Objects.requireNonNull(TagSearchUtils.getUrl(appDesc.getTagName()))) {
+                    DeriveSchedulerContext.into(bean.getRequest().subRequest(s));
+                }
             }
         }
     }
