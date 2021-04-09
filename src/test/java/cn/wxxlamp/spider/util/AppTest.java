@@ -1,14 +1,11 @@
 package cn.wxxlamp.spider.util;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Base64;
 
 /**
@@ -18,7 +15,7 @@ public class AppTest
 {
     @Test
     public void md5Test() {
-        System.out.println(Md5Utils.getMd5("快手com.api.ui"));
+        System.out.println(Md5Utils.getMd5("天行助手com.dxgl.wssistanf"));
     }
 
     @Test

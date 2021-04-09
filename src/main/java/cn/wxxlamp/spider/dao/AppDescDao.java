@@ -3,6 +3,8 @@ package cn.wxxlamp.spider.dao;
 import cn.wxxlamp.spider.model.AppDesc;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author wxxlamp
  * @date 2021/03/29~19:11
@@ -16,6 +18,16 @@ public interface AppDescDao {
      * @return {@link cn.wxxlamp.spider.model.AppDesc}
      */
     AppDesc selectAppDescByAppIdAndAppStore(@Param("appId") String appId, @Param("appStore") String appStore);
+
+    /**
+     * 查找不同的tag_name
+     * @return 集合
+     */
+    List<String> selectDistinctTagNameFromAppDesc();
+
+    List<String> selectDistinctNameFromAppDesc();
+
+    List<AppDesc> selectAppDescByPackageName(@Param("packageName") String packageName);
 
     /**
      * 通过id更新

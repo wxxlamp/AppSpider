@@ -19,7 +19,7 @@ public class TagSearchUtils {
 
     public static String[] getUrl(String tag) {
         if (checkTag(tag)) {
-            return null;
+            return new String[]{};
         }
         SET.add(tag);
         String codeTagHuaWei = "|" + tag;
@@ -33,6 +33,7 @@ public class TagSearchUtils {
         String urlHuaWei = "https://web-drcn.hispace.dbankcloud.cn/uowap/index?method=internal.getTabDetail&serviceType=20&reqPageNum=1&uri=searchApp"
                 + codeTagHuaWei + "&maxResults=25&zone=CN&locale=zh";
         String urlMyApp = "https://android.myapp.com/myapp/searchAjax.htm?kw=" + codeTagMyApp + "&pns=MA==&sid=0";
+        String iuuu9 = "https://www.iuuu9.com/s/s-" + codeTagMyApp;
         return new String[]{urlHuaWei, urlMyApp};
     }
 }

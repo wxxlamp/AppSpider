@@ -1,7 +1,10 @@
 package cn.wxxlamp.spider.dao;
 
+import cn.wxxlamp.spider.config.MybatisConfiguration;
 import cn.wxxlamp.spider.model.AppDesc;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * @author wxxlamp
@@ -13,6 +16,13 @@ public class AppDescMapperTest {
     public void test() {
         AppDesc appDesc = getAppDesc();
         AppDescMapper.mapper(appDesc);
+    }
+
+    @Test
+    public void testQuery(){
+        System.out.println(MybatisConfiguration.getDao(AppDescDao.class).selectDistinctNameFromAppDesc().size());
+
+
     }
 
     private AppDesc getAppDesc() {

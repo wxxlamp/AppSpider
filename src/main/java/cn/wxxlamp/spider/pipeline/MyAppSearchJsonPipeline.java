@@ -1,9 +1,7 @@
 package cn.wxxlamp.spider.pipeline;
 
-import cn.wxxlamp.spider.dao.AppDescDao;
 import cn.wxxlamp.spider.dao.AppDescMapper;
 import cn.wxxlamp.spider.model.AppDesc;
-import cn.wxxlamp.spider.model.bean.MyAppJson;
 import cn.wxxlamp.spider.model.bean.MyAppSearchJson;
 import cn.wxxlamp.spider.util.UrlUtils;
 import com.geccocrawler.gecco.annotation.PipelineName;
