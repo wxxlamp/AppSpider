@@ -34,4 +34,9 @@ public class AppTest
         }
         System.out.println(index);
     }
+
+    @Test
+    public void test() {
+        System.out.println("https://www.iuuu9.com/app/".length());
+    }
 }
