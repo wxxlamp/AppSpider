@@ -15,7 +15,7 @@ public class AppTest
 {
     @Test
     public void md5Test() {
-        System.out.println(Md5Utils.getMd5("天行助手com.dxgl.wssistanf"));
+        System.out.println(Md5Utils.getMd5("008K神器com.soft.apk008Tool"));
     }
 
     @Test

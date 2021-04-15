@@ -27,6 +27,8 @@ public interface AppDescDao {
 
     List<String> selectDistinctNameFromAppDesc();
 
+    List<String> selectDistinctPackageNameFromAppDesc();
+
     List<AppDesc> selectAppDescByPackageName(@Param("packageName") String packageName);
 
     /**

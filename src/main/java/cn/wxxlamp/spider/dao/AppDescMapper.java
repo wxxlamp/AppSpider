@@ -3,8 +3,6 @@ package cn.wxxlamp.spider.dao;
 import cn.wxxlamp.spider.config.MybatisConfiguration;
 import cn.wxxlamp.spider.model.AppDesc;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * @author wxxlamp
  * @date 2021/03/30~17:44

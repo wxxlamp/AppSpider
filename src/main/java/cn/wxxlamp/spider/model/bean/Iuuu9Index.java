@@ -3,6 +3,8 @@ package cn.wxxlamp.spider.model.bean;
 import com.geccocrawler.gecco.annotation.Gecco;
 import com.geccocrawler.gecco.annotation.Href;
 import com.geccocrawler.gecco.annotation.HtmlField;
+import com.geccocrawler.gecco.annotation.Request;
+import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.spider.HtmlBean;
 
 import java.util.List;
@@ -12,16 +14,19 @@ import java.util.List;
  * @author wxxlamp
  * @date 2021/04/09~16:59
  */
-@Gecco(matchUrl = "https://www.iuuu9.com/", pipelines = "consolePipeline")
+@Gecco(matchUrl = "https://www.iuuu9.com/", pipelines = "iuuu9IndexPipeline")
 public class Iuuu9Index implements HtmlBean {
 
     private static final long serialVersionUID = 6766623314386912318L;
 
-    @Href(click = true)
+    @Request
+    private HttpRequest request;
+
+    @Href
     @HtmlField(cssPath = "body > div:nth-child(5) > div.box > div.w200.fl > ul > li > a")
     private List<String> appHref;
 
-    @Href(click = true)
+    @Href
     @HtmlField(cssPath = "body > div:nth-child(7) > div.box > div.w200.fl > ul > li > a")
     private List<String> gameHref;
 
@@ -39,6 +44,14 @@ public class Iuuu9Index implements HtmlBean {
 
     public void setGameHref(List<String> gameHref) {
         this.gameHref = gameHref;
+    }
+
+    public HttpRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(HttpRequest request) {
+        this.request = request;
     }
 
     @Override

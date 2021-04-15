@@ -41,6 +41,11 @@ public class HuaWeiPipeline implements Pipeline<HuaWeiApp> {
                     DeriveSchedulerContext.into(bean.getRequest().subRequest(s));
                 }
             }
+            if (!TagSearchUtils.checkTag(appDesc.getName())) {
+                for (String s : Objects.requireNonNull(TagSearchUtils.getUrl(appDesc.getName()))) {
+                    DeriveSchedulerContext.into(bean.getRequest().subRequest(s));
+                }
+            }
         }
     }
 

@@ -19,6 +19,9 @@
     <select id="selectDistinctNameFromAppDesc" resultType="java.lang.String">
         select distinct name from app_desc
     </select>
+    <select id="selectDistinctPackageNameFromAppDesc" resultType="java.lang.String">
+        select distinct package_name from app_desc
+    </select>
     <select id="selectAppDescByPackageName" resultType="cn.wxxlamp.spider.model.AppDesc" resultMap="appDesc">
         select * from app_desc where package_name = #{packageName}
     </select>

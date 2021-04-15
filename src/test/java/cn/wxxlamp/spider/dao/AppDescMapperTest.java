@@ -2,6 +2,7 @@ package cn.wxxlamp.spider.dao;
 
 import cn.wxxlamp.spider.config.MybatisConfiguration;
 import cn.wxxlamp.spider.model.AppDesc;
+import cn.wxxlamp.spider.util.OtherUtils;
 import org.junit.Test;
 
 import java.util.List;
@@ -20,9 +21,16 @@ public class AppDescMapperTest {
 
     @Test
     public void testQuery(){
-        System.out.println(MybatisConfiguration.getDao(AppDescDao.class).selectDistinctNameFromAppDesc().size());
-
-
+        int count = 0;
+        AppDescDao appDescDao = MybatisConfiguration.getDao(AppDescDao.class);
+        for (String s : OtherUtils.ERROR_PACKAGE_LIST) {
+            List<AppDesc> appDescList = appDescDao.selectAppDescByPackageName(s);
+            if (appDescList != null && appDescList.size() != 0) {
+                count ++;
+            }
+            System.out.println(s + ": " + appDescDao.selectAppDescByPackageName(s));
+        }
+        System.out.println(count + "/" + OtherUtils.ERROR_PACKAGE_LIST.size());
     }
 
     private AppDesc getAppDesc() {

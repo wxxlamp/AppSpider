@@ -15,6 +15,22 @@
 5. 调度模块：暂时未定
 6. 管理模块，目前准备采用命令行的方式
 
+### 待解决问题
+1. Mybatis对于线程安全的SqlSession问题
+2. 日志的记录问题
+3. Java线程排查问题
+4. 如何增加爬虫的效率问题
+5. 停机快照以方便重启爬取
+
+
+virtualdroid
+system
+hook
+fake
+root
+controller
+mock
+dingwei
 ### 爬虫的初始URL
 ```json
 [

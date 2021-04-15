@@ -44,7 +44,7 @@
         <param name="File" value="\logs\\dailyRollingAppender.log"/>
         <param name="Append" value="true" />
         <!-- 设置日志备份频率，默认：为每天一个日志文件 -->
-        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd-HH-mm'.log'" />
 
         <!--每分钟一个备份-->
         <!--<param name="DatePattern" value="'.'yyyy-MM-dd-HH-mm'.log'" />-->
@@ -69,7 +69,6 @@
     <!-- 根logger的设置，若代码中未找到指定的logger，则会根据继承机制，使用根logger-->
     <root>
         <appender-ref ref="console"/>
-        <appender-ref ref="fileAppender"/>
         <appender-ref ref="dailyRollingAppender"/>
     </root>
 
