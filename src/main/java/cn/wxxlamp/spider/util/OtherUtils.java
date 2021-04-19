@@ -1,11 +1,11 @@
 package cn.wxxlamp.spider.util;
 
-import cn.wxxlamp.spider.model.AppDesc;
 import com.alibaba.fastjson.JSON;
 
 import java.util.List;
 
 /**
+ * 这几个是一些高危数据
  * @author wxxlamp
  * @date 2021/04/10~18:54
  */
@@ -54,12 +54,4 @@ public class OtherUtils {
             "]";
 
     public static List<String> ERROR_PACKAGE_LIST = JSON.parseArray(ERROR_PACKAGE, String.class);
-
-    public static boolean contains(AppDesc appDesc) {
-        if (ERROR_PACKAGE_LIST.contains(appDesc.getPackageName())) {
-            IoUtils.writeFile("existApk", appDesc, true);
-            return true;
-        }
-        return false;
-    }
 }

@@ -9,7 +9,7 @@ import com.geccocrawler.gecco.spider.HtmlBean;
  * @author wxxlamp
  * @date 2021/04/08~09:08
  */
-@Gecco(matchUrl = "https://cmd5.com/", pipelines = "beanPipeline")
+@Gecco(matchUrl = "https://wxxlamp.cn/", pipelines = "beanPipeline")
 public class Bean implements HtmlBean {
 
     private static final long serialVersionUID = 6756623354386222318L;

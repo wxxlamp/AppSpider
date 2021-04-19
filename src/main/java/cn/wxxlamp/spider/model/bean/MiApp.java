@@ -13,7 +13,7 @@ import java.util.List;
  * @author wxxlamp
  * @date 2021/04/02~09:50
  */
-@Gecco(matchUrl = "https://app.mi.com/", pipelines = {"miAppPipeline"})
+@Gecco(matchUrl = "https://app.mi.com/", pipelines = {"miAppPipeline"}, timeout = 10_000)
 public class MiApp implements HtmlBean {
 
     private static final long serialVersionUID = 6766623354386912318L;

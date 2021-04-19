@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2021/04/07~09:38
  */
 @Gecco(matchUrl = "https://android.myapp.com/myapp/searchAjax.htm?kw={kw}&pns={pns}&sid=0",
-        pipelines = {"myAppSearchJsonPipeline"})
+        pipelines = {"myAppSearchJsonPipeline"}, timeout = 20_000)
 public class MyAppSearchJson implements JsonBean {
 
     private static final long serialVersionUID = -5696033709028657709L;

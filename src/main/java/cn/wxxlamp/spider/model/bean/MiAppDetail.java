@@ -11,7 +11,7 @@ import com.geccocrawler.gecco.spider.HtmlBean;
  * @author wxxlamp
  * @date 2021/04/02~09:56
  */
-@Gecco(matchUrl = "https://app.mi.com/details?id={id}", pipelines = {"miAppDetailPipeline"})
+@Gecco(matchUrl = "https://app.mi.com/details?id={id}", pipelines = {"miAppDetailPipeline"}, timeout = 10_000)
 public class MiAppDetail implements HtmlBean {
 
     private static final long serialVersionUID = 675462335438691818L;

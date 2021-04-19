@@ -14,7 +14,7 @@ import java.util.List;
  * @author wxxlamp
  * @date 2021/03/30~16:53
  */
-@Gecco(matchUrl = "https://android.myapp.com/myapp/index.htm", pipelines = {"consolePipeline", "myAppHtmlPipeline"})
+@Gecco(matchUrl = "https://android.myapp.com/myapp/index.htm", pipelines = {"consolePipeline", "myAppHtmlPipeline"}, timeout = 20_000)
 public class MyAppHtml implements HtmlBean {
 
     private static final long serialVersionUID = 665662335318691818L;

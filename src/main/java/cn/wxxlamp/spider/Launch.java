@@ -2,6 +2,7 @@ package cn.wxxlamp.spider;
 
 import cn.wxxlamp.spider.model.search.BeanPipeline;
 import cn.wxxlamp.spider.pipeline.Iuuu9IndexPipeline;
+import cn.wxxlamp.spider.pipeline.MiAppPipeline;
 import com.geccocrawler.gecco.GeccoEngine;
 
 /**
@@ -14,13 +15,12 @@ public class Launch {
         GeccoEngine.create()
                 .classpath("cn.wxxlamp.spider")
                 .interval(2000)
-                .start("https://cmd5.com/")
                 .run();
 
         GeccoEngine.create()
                 .classpath("cn.wxxlamp.spider")
-                .interval(500)
-                .thread(35)
+                .interval(3000)
+                .thread(2)
                 .start(BeanPipeline.list)
                 .start();
     }

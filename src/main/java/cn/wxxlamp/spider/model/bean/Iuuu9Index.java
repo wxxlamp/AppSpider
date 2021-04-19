@@ -14,7 +14,7 @@ import java.util.List;
  * @author wxxlamp
  * @date 2021/04/09~16:59
  */
-@Gecco(matchUrl = "https://www.iuuu9.com/", pipelines = "iuuu9IndexPipeline")
+@Gecco(matchUrl = "https://www.iuuu9.com/", pipelines = "iuuu9IndexPipeline", timeout = 10_000)
 public class Iuuu9Index implements HtmlBean {
 
     private static final long serialVersionUID = 6766623314386912318L;

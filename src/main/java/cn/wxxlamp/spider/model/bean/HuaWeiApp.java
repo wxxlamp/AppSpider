@@ -47,6 +47,9 @@ public class HuaWeiApp implements JsonBean {
     @JSONPath("$.layoutData[0].dataList.downloadRecommendUri")
     private List<String> downloadUrl;
 
+    @JSONPath("$.layoutData[0].dataList.appid")
+    private List<String> appId;
+
     @JSONPath("$.hasNextPage")
     private Integer hasNextPage;
 
@@ -128,6 +131,14 @@ public class HuaWeiApp implements JsonBean {
 
     public void setRequest(HttpRequest request) {
         this.request = request;
+    }
+
+    public List<String> getAppId() {
+        return appId;
+    }
+
+    public void setAppId(List<String> appId) {
+        this.appId = appId;
     }
 
     @Override

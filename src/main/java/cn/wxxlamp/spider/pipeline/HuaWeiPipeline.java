@@ -58,9 +58,10 @@ public class HuaWeiPipeline implements Pipeline<HuaWeiApp> {
         appDesc.setPackageName(bean.getPackageName().get(i));
         appDesc.setSize(bean.getSize().get(i));
         appDesc.setTagName(bean.getTagName().get(i));
-        if (bean.getDownloadUrl() != null && bean.getDownloadUrl().size() > i) {
-            appDesc.setUrl(bean.getDownloadUrl().get(i));
-        }
+        appDesc.setUrl("https://appgallery.huawei.com/#/app/" + bean.getAppId().get(i));
+//        if (bean.getDownloadUrl() != null && bean.getDownloadUrl().size() > i) {
+//            appDesc.setUrl(bean.getDownloadUrl().get(i));
+//        }
         appDesc.setVersion(bean.getVersion().get(i));
         return appDesc;
    }

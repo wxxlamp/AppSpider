@@ -34,6 +34,6 @@ public class TagSearchUtils {
                 + codeTagHuaWei + "&maxResults=25&zone=CN&locale=zh";
         String urlMyApp = "https://android.myapp.com/myapp/searchAjax.htm?kw=" + codeTagMyApp + "&pns=MA==&sid=0";
         String iuuu9 = "https://www.iuuu9.com/s/s-" + codeTagMyApp;
-        return new String[]{urlHuaWei};
+        return new String[]{urlMyApp};
     }
 }

@@ -1,36 +1,39 @@
 # AppSpider
-爬取市面上的一些App，包括 包名，大小，名字，版本号，大分类，细分类，下载地址，应用市场，市场中应用唯一ID
+爬取市面上的一些App，包括
+包名，大小，名字，版本号，大分类，细分类，下载地址，应用市场，市场中应用唯一ID 等等
+
+> 另一个系统 [Fac](https://github.com/wxxlamp/Fac) 。看完AppSpider再看Fac
 
 ### 抓取思路
-1. 首先进入首页，拿到分类，按照分类抓取
+1. 首先进入首页，拿到分类，再通过分类爬取应用详细信息
 2. 然后再把分类作为key，通过搜索继续抓取
    * 华为可以直接搜索
    * 应用宝的页数通过base64编码
+   * 可以搜索IUUU9
+   
+> 爬取的方式有两种，一个是通过html，一个是通过json，两种方式都支持
+
+### 应用市场
+目前爬取市场有华为，IUUU9，小米，应用宝
 
 ### 功能模块：
-1. 爬虫模块：采用Gecco完成
-2. 持久化模块：前期采用MySQL数据库，后期上线采用Oracle
+1. 爬虫模块：采用 [Gecco](https://github.com/xtuhcy/gecco) 完成
+2. 持久化模块：通过Mybatis加MySQL完成
 3. 测试模块：采用Junit完成测试
 4. 日志模块：采用log4j完成日志记录
-5. 调度模块：暂时未定
-6. 管理模块，目前准备采用命令行的方式
 
 ### 待解决问题
-1. Mybatis对于线程安全的SqlSession问题
-2. 日志的记录问题
-3. Java线程排查问题
-4. 如何增加爬虫的效率问题
-5. 停机快照以方便重启爬取
+1. 停机快照以方便重启爬取
 
-
-virtualdroid
+### 下列包名可能会涉及黑产
+virtual
 system
 hook
 fake
 root
 controller
 mock
-dingwei
+
 ### 爬虫的初始URL
 ```json
 [
@@ -131,68 +134,4 @@ dingwei
     "url": "https://app.mi.com/"
   }
 ]
-
-  {
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=15&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=5&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=27&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=2&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=7&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=12&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=10&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=9&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=4&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=3&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=6&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=14&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=8&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=11&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=13&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=1&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=16&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=17&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=18&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=19&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=20&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=21&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=22&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=23&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=24&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=25&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=26&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=28&pageSize=30"
-  },{
-    "url": "https://app.mi.com/categotyAllListApi?page=1&categoryId=29&pageSize=30"
-  }
 ```
-
-
-之前爬过一次，但是被业务方换需求了，详情请见： https://github.com/wxxlamp/Fac
-

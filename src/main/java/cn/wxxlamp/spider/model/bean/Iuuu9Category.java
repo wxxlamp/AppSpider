@@ -11,7 +11,7 @@ import java.util.List;
  * @author wxxlamp
  * @date 2021/04/09~17:02
  */
-@Gecco(matchUrl = "https://www.iuuu9.com/app/c-{page}")
+@Gecco(matchUrl = "https://www.iuuu9.com/app/c-{page}", timeout = 10_000)
 public class Iuuu9Category implements HtmlBean {
 
     private static final long serialVersionUID = 6766623354383912318L;

@@ -11,7 +11,7 @@ import com.geccocrawler.gecco.spider.HtmlBean;
  * @author wxxlamp
  * @date 2021/04/09~17:05
  */
-@Gecco(matchUrl = "https://www.iuuu9.com/ap{p}/{package}", pipelines = "iuuu9DetailPipeline")
+@Gecco(matchUrl = "https://www.iuuu9.com/ap{p}/{package}", pipelines = "iuuu9DetailPipeline", timeout = 10_000)
 public class Iuuu9Detail implements HtmlBean {
 
     private static final long serialVersionUID = 6763623354386912318L;

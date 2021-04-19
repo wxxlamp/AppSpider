@@ -12,7 +12,7 @@ import java.util.List;
  * @author wxxlamp
  * @date 2021/04/02~09:46
  */
-@Gecco(matchUrl = "https://app.mi.com/categotyAllListApi?page={p}&categoryId={id}&pageSize=30", pipelines = {"miAppJsonPipeline"})
+@Gecco(matchUrl = "https://app.mi.com/categotyAllListApi?page={p}&categoryId={id}&pageSize=30", pipelines = {"miAppJsonPipeline"}, timeout = 10_000)
 public class MiAppJson implements JsonBean {
 
     private static final long serialVersionUID = 6756623354386912318L;

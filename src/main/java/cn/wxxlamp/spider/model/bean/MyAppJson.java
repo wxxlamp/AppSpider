@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2021/03/30~16:56
  */
 @Gecco(matchUrl = "https://android.myapp.com/cate/appList.htm?orgame={game}&categoryId={id}&pageSize=20&pageContext={page}",
-        pipelines = {"myAppJsonPipeline"})
+        pipelines = {"myAppJsonPipeline"}, timeout = 20_000)
 public class MyAppJson implements JsonBean {
 
     private static final long serialVersionUID = -5696033709028657709L;

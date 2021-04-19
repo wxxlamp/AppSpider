@@ -24,11 +24,11 @@ public class MiAppDetailPipeline implements Pipeline<MiAppDetail> {
         AppDesc appDesc = getAppDesc(bean);
         AppDescMapper.mapper(appDesc);
         // 搜索华为和应用宝
-        if (!TagSearchUtils.checkTag(appDesc.getTagName())) {
-            for (String s : Objects.requireNonNull(TagSearchUtils.getUrl(appDesc.getTagName()))) {
-                DeriveSchedulerContext.into(bean.getRequest().subRequest(s));
-            }
-        }
+//        if (!TagSearchUtils.checkTag(appDesc.getTagName())) {
+//            for (String s : Objects.requireNonNull(TagSearchUtils.getUrl(appDesc.getTagName()))) {
+//                DeriveSchedulerContext.into(bean.getRequest().subRequest(s));
+//            }
+//        }
     }
 
     private AppDesc getAppDesc(MiAppDetail bean) {

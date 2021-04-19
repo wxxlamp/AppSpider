@@ -7,6 +7,8 @@ import com.geccocrawler.gecco.pipeline.Pipeline;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.scheduler.DeriveSchedulerContext;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,6 +17,9 @@ import java.util.List;
  */
 @PipelineName("miAppPipeline")
 public class MiAppPipeline implements Pipeline<MiApp> {
+
+    public static List<HttpRequest> requestList = new ArrayList<>(64);
+
     @Override
     public void process(MiApp bean) {
         subRequest(bean.getAppUrl(), bean.getRequest());
@@ -24,9 +29,10 @@ public class MiAppPipeline implements Pipeline<MiApp> {
     private void subRequest(List<String> urls, HttpRequest request) {
         for (String url : urls) {
             int categoryId = UrlUtils.getUrlValue(url, "/category/");
-            DeriveSchedulerContext.into(request.subRequest
+            requestList.add(request.subRequest
                     ("https://app.mi.com/categotyAllListApi?page=1&categoryId="
                             + categoryId + "&pageSize=30"));
         }
+        Collections.reverse(requestList);
     }
 }
